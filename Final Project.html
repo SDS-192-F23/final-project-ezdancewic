@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Final Project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Final Project_files/libs/quarto-html/quarto.js"></script>
+<script src="Final Project_files/libs/quarto-html/popper.min.js"></script>
+<script src="Final Project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Final Project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Final Project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Final Project_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Final Project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Final Project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Final Project_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="Final Project_files/libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="Final Project_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="Final Project_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="Final Project_files/libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="Final Project_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="Final Project_files/libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="Final Project_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="Final Project_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="Final Project_files/libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="Final Project_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="Final Project_files/libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+<link href="Final Project_files/libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet">
+<script src="Final Project_files/libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
+<link href="Final Project_files/libs/ionicons-2.0.1/ionicons.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Final Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reading in libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: DBI</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dbplyr'
+
+The following objects are masked from 'package:dplyr':
+
+    ident, sql</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflegend)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Data (c) OpenStreetMap contributors, ODbL 1.0. https://www.openstreetmap.org/copyright</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#connecting to SQL server</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>db <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MySQL</span>(),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"scidb.smith.edu"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"sds192"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="st">"DSismfc@S"</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">connection =</span> db, <span class="at">max.print =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(db)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "MySQLConnection"
+attr(,"package")
+[1] "RMySQL"</code></pre>
+</div>
+</div>
+<section id="sql-code" class="level1">
+<h1>SQL Code</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>#browsing databases</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>SHOW DATABASES;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped small">
+<caption>8 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Database</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">airlines</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">citibike</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fec</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">imdb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">information_schema</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lahman</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">performance_schema</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">yelp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>#choosing citibike</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> citibike;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>#browsing <span class="kw">tables</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>SHOW <span class="kw">TABLES</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped small">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tables_in_citibike</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">station_months</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">station_summary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">trip_summary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">trips</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>#glimpsing variables <span class="kw">in</span> station_summmary</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>DESCRIBE station_summary;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped small">
+<caption>9 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Null</th>
+<th style="text-align: left;">Key</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">station_id</td>
+<td style="text-align: left;">smallint</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">text</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lat</td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lon</td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">num_months</td>
+<td style="text-align: left;">decimal(23,0)</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">earliest</td>
+<td style="text-align: left;">datetime</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">latest</td>
+<td style="text-align: left;">datetime</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">num_starts</td>
+<td style="text-align: left;">decimal(27,0)</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">num_stops</td>
+<td style="text-align: left;">decimal(27,0)</td>
+<td style="text-align: left;">YES</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>#getting information <span class="kw">on</span> <span class="kw">the</span> top <span class="dv">100</span> most frequented citibike stations </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>#who have <span class="kw">data</span> <span class="cf">for</span> more <span class="kw">than</span> <span class="dv">11</span> months <span class="kw">of</span> <span class="kw">the</span> <span class="dt">year</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> station_id, lat, lon, num_starts, num_stops</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> station_summary</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> num_months <span class="op">&gt;</span> <span class="dv">11</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> num_starts <span class="kw">DESC</span> </span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">100</span>; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped small">
+<caption>Displaying records 1 - 20</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">station_id</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: right;">lon</th>
+<th style="text-align: right;">num_starts</th>
+<th style="text-align: right;">num_stops</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">519</td>
+<td style="text-align: right;">40.75187</td>
+<td style="text-align: right;">-73.97771</td>
+<td style="text-align: right;">162716</td>
+<td style="text-align: right;">160387</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">497</td>
+<td style="text-align: right;">40.73705</td>
+<td style="text-align: right;">-73.99009</td>
+<td style="text-align: right;">112218</td>
+<td style="text-align: right;">117318</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">402</td>
+<td style="text-align: right;">40.74034</td>
+<td style="text-align: right;">-73.98955</td>
+<td style="text-align: right;">108590</td>
+<td style="text-align: right;">116509</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">435</td>
+<td style="text-align: right;">40.74174</td>
+<td style="text-align: right;">-73.99416</td>
+<td style="text-align: right;">107133</td>
+<td style="text-align: right;">108457</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">426</td>
+<td style="text-align: right;">40.71755</td>
+<td style="text-align: right;">-74.01322</td>
+<td style="text-align: right;">105610</td>
+<td style="text-align: right;">114511</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3255</td>
+<td style="text-align: right;">40.75059</td>
+<td style="text-align: right;">-73.99468</td>
+<td style="text-align: right;">97083</td>
+<td style="text-align: right;">98780</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">490</td>
+<td style="text-align: right;">40.75155</td>
+<td style="text-align: right;">-73.99393</td>
+<td style="text-align: right;">94872</td>
+<td style="text-align: right;">90574</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">459</td>
+<td style="text-align: right;">40.74674</td>
+<td style="text-align: right;">-74.00776</td>
+<td style="text-align: right;">90718</td>
+<td style="text-align: right;">96123</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">514</td>
+<td style="text-align: right;">40.76087</td>
+<td style="text-align: right;">-74.00278</td>
+<td style="text-align: right;">86833</td>
+<td style="text-align: right;">89914</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">477</td>
+<td style="text-align: right;">40.75641</td>
+<td style="text-align: right;">-73.99003</td>
+<td style="text-align: right;">85082</td>
+<td style="text-align: right;">81845</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">523</td>
+<td style="text-align: right;">40.75467</td>
+<td style="text-align: right;">-73.99138</td>
+<td style="text-align: right;">83822</td>
+<td style="text-align: right;">84087</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">368</td>
+<td style="text-align: right;">40.73039</td>
+<td style="text-align: right;">-74.00215</td>
+<td style="text-align: right;">82039</td>
+<td style="text-align: right;">83543</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">281</td>
+<td style="text-align: right;">40.76440</td>
+<td style="text-align: right;">-73.97371</td>
+<td style="text-align: right;">81685</td>
+<td style="text-align: right;">71010</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">40.76591</td>
+<td style="text-align: right;">-73.97634</td>
+<td style="text-align: right;">78734</td>
+<td style="text-align: right;">77683</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">382</td>
+<td style="text-align: right;">40.73493</td>
+<td style="text-align: right;">-73.99201</td>
+<td style="text-align: right;">77925</td>
+<td style="text-align: right;">80801</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">293</td>
+<td style="text-align: right;">40.73021</td>
+<td style="text-align: right;">-73.99103</td>
+<td style="text-align: right;">77681</td>
+<td style="text-align: right;">79511</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">284</td>
+<td style="text-align: right;">40.73902</td>
+<td style="text-align: right;">-74.00264</td>
+<td style="text-align: right;">77373</td>
+<td style="text-align: right;">79222</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3263</td>
+<td style="text-align: right;">40.72931</td>
+<td style="text-align: right;">-73.99084</td>
+<td style="text-align: right;">76219</td>
+<td style="text-align: right;">76580</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">40.72210</td>
+<td style="text-align: right;">-73.99725</td>
+<td style="text-align: right;">76114</td>
+<td style="text-align: right;">76198</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">358</td>
+<td style="text-align: right;">40.73292</td>
+<td style="text-align: right;">-74.00711</td>
+<td style="text-align: right;">75667</td>
+<td style="text-align: right;">76370</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#bringing SQL database into R</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>citibike_stations <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(<span class="at">conn =</span> db, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">"SELECT station_id, lat, lon, num_starts, num_stops</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">FROM station_summary</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE num_months &gt; 11 </span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY num_starts DESC </span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 100;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .local(conn, statement, ...): Decimal MySQL column 3 imported as
+numeric</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in .local(conn, statement, ...): Decimal MySQL column 4 imported as
+numeric</code></pre>
+</div>
+</div>
+</section>
+<section id="leaflet-map-creation" class="level1">
+<h1>Leaflet Map Creation</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#reading in second dataframe containing subway station data </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>subway_stations <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"MTA_NYCT_Subway_Entrances_and_Exits__2015.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1868 Columns: 20
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (16): Division, Line, Borough, Station Name, Daytime Routes, Entrance Ty...
+dbl  (4): Station Latitude, Station Longitude, Entrance Latitude, Entrance L...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cleaning the names </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>subway_stations <span class="ot">&lt;-</span> <span class="fu">clean_names</span>(subway_stations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filtering only to manhattan</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>subway_stations_manhattan <span class="ot">&lt;-</span> subway_stations <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(borough <span class="sc">==</span> <span class="st">"M"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#"cropping" to only use the subway stations in the same area as the citibike stations</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>subway_stations_reduced <span class="ot">&lt;-</span> subway_stations_manhattan <span class="sc">|&gt;</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(station_latitude <span class="sc">&lt;</span> <span class="fl">40.78143</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(station_latitude <span class="sc">&gt;</span> <span class="fl">40.70569</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(station_longitude <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">73.95818</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#replacing spaces in daytime_routes with no space so they are not counted in str_length</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>subway_stations_reduced<span class="sc">$</span>daytime_routes <span class="ot">&lt;-</span> subway_stations_reduced<span class="sc">$</span>daytime_routes <span class="sc">|&gt;</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">' '</span> <span class="ot">=</span> <span class="st">''</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a new variable counting the number of characters in daytime_routes,</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#and therefore the number of routes at each station</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>subway_stations_reduced <span class="ot">&lt;-</span> subway_stations_reduced <span class="sc">|&gt;</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">num_routes =</span> <span class="fu">str_length</span>(subway_stations_reduced<span class="sc">$</span>daytime_routes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summarizing the num_starts in citibike stations to know where to cutoff the icon colors</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(citibike_stations<span class="sc">$</span>num_starts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  47311   51808   56965   63822   72624  162716 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a function to separate the color bins for the bike station icons</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>getColor <span class="ot">&lt;-</span> <span class="cf">function</span>(citibike_stations) {</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(citibike_stations<span class="sc">$</span>num_starts, <span class="cf">function</span>(num_starts) {</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(num_starts <span class="sc">&lt;=</span> <span class="dv">51808</span>) {</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lightblue"</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span>(num_starts <span class="sc">&lt;=</span> <span class="dv">72624</span>) {</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"blue"</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"darkblue"</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  } })</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co">#creating a custom icon </span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co">#my bike.svg didn't work for some reason :( </span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>icons <span class="ot">&lt;-</span> <span class="fu">awesomeIcons</span>(</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">icon =</span> <span class="st">'bicycle.svg'</span>,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">iconColor =</span> <span class="st">'black'</span>,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">library =</span> <span class="st">'ion'</span>,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">markerColor =</span> <span class="fu">getColor</span>(citibike_stations)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating the leaflet map</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Stadia.AlidadeSmooth) <span class="sc">|&gt;</span> <span class="co">#changing the tile theme </span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addAwesomeMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>lon, <span class="co">#adding citibike station markers</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">lat =</span> <span class="sc">~</span>lat,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> citibike_stations, </span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">icon =</span> icons</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(<span class="at">lng =</span> <span class="sc">~</span>station_longitude, <span class="co">#adding subway station markers</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">lat =</span> <span class="sc">~</span>station_latitude,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> subway_stations_reduced, </span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">label =</span> <span class="sc">~</span>station_name, </span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> <span class="st">"purple"</span>,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">opacity =</span> <span class="sc">~</span>num_routes, <span class="co">#changing the opacity to reflect the number of routes at each station</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stroke =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPopups</span>(<span class="at">lat =</span>  <span class="fl">40.750580</span>, <span class="at">lng =</span> <span class="sc">-</span><span class="fl">73.993584</span>, <span class="st">"Penn Station"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPopups</span>(<span class="at">lat =</span>  <span class="fl">40.766036</span>, <span class="at">lng =</span> <span class="sc">-</span><span class="fl">73.974467</span>, <span class="st">"Central Park Pond"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addControl</span>(<span class="st">"Citibike &amp; Subway Stations in Manhattan (2015)"</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"topright"</span>)) <span class="sc">|&gt;</span> <span class="co">#annotating map </span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addControl</span>(<span class="st">"Darker Blue = More Bike Starts"</span> , <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"topright"</span>)) <span class="sc">|&gt;</span> <span class="co"># I could not figure out</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addControl</span>(<span class="st">"Darker Purple = More Subway Lines"</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"topright"</span>)) <span class="sc">|&gt;</span> <span class="co"># how to do this with addLegend</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addControl</span>(<span class="st">"Source: Smith SQL Server, NYC Public Data"</span>, <span class="at">position =</span> <span class="fu">c</span>(<span class="st">"bottomleft"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-5d7d2f7f80ad70139848" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-5d7d2f7f80ad70139848">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["Stadia.AlidadeSmooth",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addAwesomeMarkers","args":[[40.751873,40.73704984,40.74034319999999,40.74173969000001,40.71754834,40.75058534702151,40.751551,40.74674499999999,40.76087502000001,40.75640548000001,40.75466590999999,40.73038599,40.7643971,40.76590936000001,40.73492694999999,40.73020660529954,40.7390169121,40.72930611488741,40.72210378668603,40.73291553000001,40.73971301,40.71151199999999,40.72743422999999,40.74915599999999,40.75019995000001,40.76915505,40.71273266000001,40.74901271,40.72621787999999,40.73221853,40.75510266999999,40.76695317000001,40.74487634,40.72430527250332,40.746647,40.7454973,40.7153379,40.718822,40.72710258,40.74025877999999,40.75513557,40.74402299999999,40.73423200000001,40.74096373999999,40.73726186,40.76019251999999,40.73997354103409,40.73172427999999,40.7457121,40.72917025,40.76068327096591,40.74620090000001,40.76227204999999,40.73223272000001,40.76132983124814,40.74395411,40.76500525,40.73047308999999,40.72740793999999,40.73935542,40.7277140777778,40.73401143,40.751396,40.74780372999999,40.77705750000001,40.72955361,40.73912601,40.74854862,40.74475148,40.70569253999999,40.75158099999999,40.74238787000001,40.73587678000001,40.73650199999999,40.72884599999999,40.74334935000001,40.73827427999999,40.74734825000001,40.72019576000001,40.75929124,40.722055,40.72317958000001,40.77579376683666,40.76526539999999,40.72706363348306,40.7284186,40.73649403000001,40.77966809007312,40.74516770000001,40.75527306999999,40.73381219196632,40.74765947000001,40.71291223999999,40.75018156325683,40.77282817,40.75724567911726,40.735238,40.71893904,40.74311555376487,40.72066442],[-73.977706,-73.99009295999998,-73.98955108999999,-73.99415555999998,-74.01322069000001,-73.9946848154068,-73.99393399999998,-74.00775599999999,-74.00277668,-73.9900262,-73.99138152,-74.00214988000002,-73.97371465000002,-73.97634151,-73.99200509000001,-73.99102628231049,-74.0026376103,-73.9908391982317,-73.99724900722504,-74.00711384,-73.99456404999999,-74.015756,-73.99379024999999,-73.99160000000002,-73.99093085000001,-73.98191841000002,-74.00460729999999,-73.98848395000002,-73.98379854999999,-73.98165557000002,-73.97498696000001,-73.98169333,-73.99529885000001,-73.99600982666016,-73.993915,-74.00197138999999,-74.01658354000001,-73.99595999999998,-74.00297088000001,-73.98409214000002,-73.98658032000002,-73.97605599999999,-73.98692300000002,-73.98602213000001,-73.99238966999998,-73.9912551,-74.00513872504234,-74.00674435999998,-73.98194829000001,-73.99810231000001,-73.9845272898674,-73.98855722999998,-73.98788205000001,-73.98889957000002,-73.97982001304626,-73.99144871,-73.95818491,-73.98672378000002,-73.98142006,-73.99931783,-74.01129573583603,-74.00293877,-74.00522599999999,-73.9734419,-73.97898475,-73.98057249,-73.97973776000002,-73.98808415999999,-73.99915362,-74.01677685000001,-73.97790999999998,-73.99726235000001,-73.98205026999999,-73.97809471999999,-74.00859100000001,-74.00681753000002,-73.98751968000001,-73.99723551,-73.98997825000001,-73.98859650999999,-73.98911099999999,-73.99480012000001,-73.9762057363987,-73.98192338,-73.99662137031554,-73.98713956000002,-73.99704374,-73.98093044757842,-73.98683077,-73.98316936000002,-73.98054420948029,-73.98490706999999,-74.01020233999999,-74.00218427181244,-73.96685275999998,-73.97805914282799,-74.000271,-73.99266288,-73.98215353488922,-73.98517977000002],{"icon":"bicycle.svg","markerColor":["darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","darkblue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","blue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue","lightblue"],"iconColor":"black","spin":false,"squareMarker":false,"iconRotate":0,"font":"monospace","prefix":"ion"},null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[[40.77362,40.77362,40.77362,40.77362,40.77362,40.77362,40.77362,40.77362,40.768141,40.768141,40.768141,40.768141,40.768141,40.764627,40.764627,40.764627,40.764627,40.764627,40.76266,40.76266,40.76266,40.76266,40.762526,40.762526,40.762526,40.762526,40.762526,40.762526,40.762526,40.757552,40.757552,40.757552,40.757552,40.757552,40.757552,40.757552,40.757107,40.757107,40.757107,40.757107,40.757107,40.757107,40.757107,40.757107,40.757107,40.764811,40.764811,40.764811,40.764811,40.764811,40.764811,40.764811,40.760167,40.760167,40.760167,40.760167,40.760167,40.751431,40.775594,40.775594,40.775594,40.751776,40.751776,40.751776,40.751776,40.751776,40.751776,40.751776,40.751776,40.763972,40.763972,40.763972,40.763972,40.763972,40.763972,40.763972,40.763972,40.752769,40.752769,40.752769,40.752769,40.752769,40.752769,40.752769,40.764664,40.764664,40.764664,40.764664,40.764664,40.764664,40.764664,40.764664,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.758663,40.730953,40.730953,40.730953,40.730953,40.762862,40.762862,40.762862,40.762862,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768296,40.768247,40.768247,40.768247,40.768247,40.768247,40.753821,40.753821,40.753821,40.778453,40.778453,40.778453,40.778453,40.746081,40.746081,40.746081,40.746081,40.746081,40.746081,40.746081,40.746081,40.746081,40.77344,40.77344,40.77344,40.77344,40.77344,40.77344,40.761728,40.761728,40.761728,40.761728,40.761728,40.761728,40.759901,40.759901,40.759901,40.759901,40.759901,40.759901,40.759901,40.74307,40.74307,40.74307,40.74307,40.74307,40.74307,40.74307,40.754222,40.754222,40.754222,40.754222,40.754222,40.754222,40.754222,40.754222,40.754222,40.762456,40.762456,40.762456,40.762456,40.762456,40.762456,40.762456,40.762456,40.762456,40.762456,40.732849,40.732849,40.732849,40.732849,40.755983,40.739864,40.739864,40.739864,40.739864,40.739864,40.739864,40.739864,40.739864,40.739864,40.754672,40.754672,40.754672,40.754672,40.718315,40.718315,40.75529,40.75529,40.75529,40.75529,40.75529,40.75529,40.75529,40.75529,40.75529,40.749719,40.749719,40.749719,40.749719,40.749719,40.749719,40.749719,40.749719,40.749719,40.749719,40.749567,40.749567,40.749567,40.749567,40.718611,40.718611,40.718611,40.718611,40.745494,40.745494,40.745494,40.745494,40.741303,40.741303,40.741303,40.741303,40.741303,40.741303,40.741303,40.741303,40.757308,40.757308,40.757308,40.757308,40.757308,40.757308,40.757308,40.757308,40.757308,40.723402,40.723402,40.723402,40.723402,40.734673,40.734673,40.734673,40.734673,40.734673,40.734673,40.713715,40.713715,40.713715,40.713715,40.735736,40.735736,40.735736,40.735736,40.734789,40.734789,40.750373,40.750373,40.750373,40.750373,40.750373,40.750373,40.750373,40.750373,40.750373,40.750373,40.750373,40.730054,40.730054,40.730328,40.730328,40.730328,40.730328,40.730328,40.730328,40.730328,40.730328,40.742878,40.742878,40.742878,40.742878,40.742878,40.742878,40.742878,40.742878,40.747215,40.747215,40.747215,40.747215,40.747215,40.747215,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.752287,40.718267,40.718267,40.718267,40.72028,40.72028,40.725915,40.725915,40.725915,40.725915,40.725915,40.725915,40.725915,40.744081,40.744081,40.744081,40.744081,40.725297,40.725297,40.725297,40.725297,40.725297,40.738228,40.738228,40.738228,40.738228,40.738228,40.738228,40.738228,40.738228,40.738228,40.738228,40.737335,40.737335,40.722301,40.722301,40.722301,40.722301,40.724329,40.724329,40.724329,40.724329,40.74104,40.74104,40.74104,40.74104,40.74104,40.74104,40.745906,40.745906,40.745906,40.745906,40.745906,40.745906,40.745906,40.745906,40.745906,40.745906,40.745906,40.718092,40.718803,40.718803,40.718803,40.718803,40.718803,40.718803,40.718803,40.737826,40.737826,40.737826,40.737826,40.737826,40.737826,40.737826,40.737826,40.732338,40.732338,40.732338,40.732338,40.732338,40.732338,40.740893,40.740893,40.740893,40.740893,40.740893,40.740893,40.740893,40.740893,40.719527,40.719527,40.719527,40.719527,40.719527,40.719527,40.719527,40.755882,40.755882,40.739777,40.739777,40.733422,40.733422,40.733422,40.733422,40.733422,40.71419,40.713243,40.713889,40.726227,40.726227,40.726227,40.713813,40.713065,40.713065,40.712333,40.712868,40.712723,40.711824,40.711857,40.720824,40.720824,40.720824,40.720824,40.720824,40.728251,40.728251,40.728251,40.728251,40.728251,40.728251,40.728251,40.728251,40.722854,40.722854,40.722854,40.722854,40.709416,40.709416,40.709416,40.709416,40.719318,40.719318,40.719318,40.719318,40.719318,40.713282,40.713282,40.713282,40.710374,40.710374,40.710374,40.710374,40.710374,40.710374,40.710197,40.710197,40.714111,40.714111,40.714111,40.714111,40.714111,40.714111,40.714111,40.714111,40.714111,40.713051,40.706821,40.706821,40.706821,40.706821,40.706821,40.706821,40.715478,40.715478,40.715478,40.715478,40.715478,40.710368,40.710368,40.710368,40.710368,40.710368,40.712582,40.712582,40.712582,40.712582,40.712582,40.712582,40.712582,40.712582,40.710668,40.710668,40.710668,40.710668,40.706476,40.706476,40.706476,40.706476,40.706476,40.706476,40.706476,40.706476,40.706476,40.707557,40.707557,40.707557,40.707557,40.707557,40.707557,40.707557,40.707557,40.70722,40.70722,40.70722,40.70722,40.70722,40.70722,40.70722,40.70722,40.70722,40.707513,40.707513,40.707513,40.707513,40.707513,40.707513],[-73.959874,-73.959874,-73.959874,-73.959874,-73.959874,-73.959874,-73.959874,-73.959874,-73.96387,-73.96387,-73.96387,-73.96387,-73.96387,-73.96611,-73.96611,-73.96611,-73.96611,-73.96611,-73.967258,-73.967258,-73.967258,-73.967258,-73.967967,-73.967967,-73.967967,-73.967967,-73.967967,-73.967967,-73.967967,-73.969055,-73.969055,-73.969055,-73.969055,-73.969055,-73.969055,-73.969055,-73.97192,-73.97192,-73.97192,-73.97192,-73.97192,-73.97192,-73.97192,-73.97192,-73.97192,-73.973347,-73.973347,-73.973347,-73.973347,-73.973347,-73.973347,-73.973347,-73.975224,-73.975224,-73.975224,-73.975224,-73.975224,-73.976041,-73.97641,-73.97641,-73.97641,-73.976848,-73.976848,-73.976848,-73.976848,-73.976848,-73.976848,-73.976848,-73.976848,-73.97745,-73.97745,-73.97745,-73.97745,-73.97745,-73.97745,-73.97745,-73.97745,-73.97918900000001,-73.97918900000001,-73.97918900000001,-73.97918900000001,-73.97918900000001,-73.97918900000001,-73.97918900000001,-73.98065800000001,-73.98065800000001,-73.98065800000001,-73.98065800000001,-73.98065800000001,-73.98065800000001,-73.98065800000001,-73.98065800000001,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981329,-73.981628,-73.981628,-73.981628,-73.981628,-73.98163700000001,-73.98163700000001,-73.98163700000001,-73.98163700000001,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.981736,-73.98192899999999,-73.98192899999999,-73.98192899999999,-73.98192899999999,-73.98192899999999,-73.98196299999999,-73.98196299999999,-73.98196299999999,-73.98197,-73.98197,-73.98197,-73.98197,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.98207600000001,-73.982209,-73.982209,-73.982209,-73.982209,-73.982209,-73.982209,-73.98384900000001,-73.98384900000001,-73.98384900000001,-73.98384900000001,-73.98384900000001,-73.98384900000001,-73.984139,-73.984139,-73.984139,-73.984139,-73.984139,-73.984139,-73.984139,-73.984264,-73.984264,-73.984264,-73.984264,-73.984264,-73.984264,-73.984264,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.98456899999999,-73.985984,-73.985984,-73.985984,-73.985984,-73.985984,-73.985984,-73.985984,-73.985984,-73.985984,-73.985984,-73.98612199999999,-73.98612199999999,-73.98612199999999,-73.98612199999999,-73.98622899999999,-73.986599,-73.986599,-73.986599,-73.986599,-73.986599,-73.986599,-73.986599,-73.986599,-73.986599,-73.986754,-73.986754,-73.986754,-73.986754,-73.987437,-73.987437,-73.987495,-73.987495,-73.987495,-73.987495,-73.987495,-73.987495,-73.987495,-73.987495,-73.987495,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98782300000001,-73.98795,-73.98795,-73.98795,-73.98795,-73.988114,-73.988114,-73.988114,-73.988114,-73.988691,-73.988691,-73.988691,-73.988691,-73.989344,-73.989344,-73.989344,-73.989344,-73.989344,-73.989344,-73.989344,-73.989344,-73.989735,-73.989735,-73.989735,-73.989735,-73.989735,-73.989735,-73.989735,-73.989735,-73.989735,-73.989938,-73.989938,-73.989938,-73.989938,-73.989951,-73.989951,-73.989951,-73.989951,-73.989951,-73.989951,-73.990173,-73.990173,-73.990173,-73.990173,-73.990568,-73.990568,-73.990568,-73.990568,-73.99073,-73.99073,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.991057,-73.99106999999999,-73.99106999999999,-73.99262899999999,-73.99262899999999,-73.99262899999999,-73.99262899999999,-73.99262899999999,-73.99262899999999,-73.99262899999999,-73.99262899999999,-73.99282100000001,-73.99282100000001,-73.99282100000001,-73.99282100000001,-73.99282100000001,-73.99282100000001,-73.99282100000001,-73.99282100000001,-73.993365,-73.993365,-73.993365,-73.993365,-73.993365,-73.993365,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993391,-73.993753,-73.993753,-73.993753,-73.993915,-73.993915,-73.994659,-73.994659,-73.994659,-73.994659,-73.994659,-73.994659,-73.994659,-73.99565699999999,-73.99565699999999,-73.99565699999999,-73.99565699999999,-73.99620400000001,-73.99620400000001,-73.99620400000001,-73.99620400000001,-73.99620400000001,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.99620899999999,-73.996786,-73.996786,-73.997141,-73.997141,-73.997141,-73.997141,-73.997702,-73.997702,-73.997702,-73.997702,-73.997871,-73.997871,-73.997871,-73.997871,-73.997871,-73.997871,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.998041,-73.999892,-74.000193,-74.000193,-74.000193,-74.000193,-74.000193,-74.000193,-74.000193,-74.000201,-74.000201,-74.000201,-74.000201,-74.000201,-74.000201,-74.000201,-74.000201,-74.000495,-74.000495,-74.000495,-74.000495,-74.000495,-74.000495,-74.00169,-74.00169,-74.00169,-74.00169,-74.00169,-74.00169,-74.00169,-74.00169,-74.00177499999999,-74.00177499999999,-74.00177499999999,-74.00177499999999,-74.00177499999999,-74.00177499999999,-74.00177499999999,-74.00191,-74.00191,-74.002578,-74.002578,-74.002906,-74.002906,-74.002906,-74.002906,-74.002906,-74.003199,-74.003401,-74.003654,-74.003739,-74.003739,-74.003739,-74.003907,-74.004131,-74.004131,-74.00438699999999,-74.004806,-74.004971,-74.00505699999999,-74.00511400000001,-74.005229,-74.005229,-74.005229,-74.005229,-74.005229,-74.00536700000001,-74.00536700000001,-74.00536700000001,-74.00536700000001,-74.00536700000001,-74.00536700000001,-74.00536700000001,-74.00536700000001,-74.006277,-74.006277,-74.006277,-74.006277,-74.00657099999999,-74.00657099999999,-74.00657099999999,-74.00657099999999,-74.00688599999999,-74.00688599999999,-74.00688599999999,-74.00688599999999,-74.00688599999999,-74.006978,-74.006978,-74.006978,-74.007582,-74.007582,-74.007582,-74.007582,-74.007582,-74.007582,-74.00769099999999,-74.00769099999999,-74.008585,-74.008585,-74.008585,-74.008585,-74.008585,-74.008585,-74.008585,-74.008585,-74.008585,-74.00881099999999,-74.0091,-74.0091,-74.0091,-74.0091,-74.0091,-74.0091,-74.009266,-74.009266,-74.009266,-74.009266,-74.009266,-74.00950899999999,-74.00950899999999,-74.00950899999999,-74.00950899999999,-74.00950899999999,-74.009781,-74.009781,-74.009781,-74.009781,-74.009781,-74.009781,-74.009781,-74.009781,-74.01102899999999,-74.01102899999999,-74.01102899999999,-74.01102899999999,-74.011056,-74.011056,-74.011056,-74.011056,-74.011056,-74.011056,-74.011056,-74.011056,-74.011056,-74.01186199999999,-74.01186199999999,-74.01186199999999,-74.01186199999999,-74.01186199999999,-74.01186199999999,-74.01186199999999,-74.01186199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.01334199999999,-74.013783,-74.013783,-74.013783,-74.013783,-74.013783,-74.013783],10,null,null,{"interactive":true,"className":"","stroke":false,"color":"purple","weight":5,"opacity":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6,6,6,6,6,6,6,6,6,6,6,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,6,2,2,2,6,6,6,6,6,6,6,6,1,1,1,1,1,1,1,1,6,6,6,6,6,6,6,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,5,4,4,4,4,4,4,4,4,1,1,1,1,3,3,3,3,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,3,3,3,3,3,3,1,1,1,1,1,1,1,5,5,5,5,5,5,5,5,5,2,2,2,2,2,2,2,2,2,2,1,1,1,1,12,1,1,1,1,1,1,1,1,1,11,11,11,11,4,4,11,11,11,11,11,11,11,11,11,7,7,7,7,7,7,7,7,7,7,7,7,7,7,4,4,4,4,2,2,2,2,2,2,2,2,2,2,2,2,11,11,11,11,11,11,11,11,11,1,1,1,1,7,7,7,7,7,7,1,1,1,1,7,7,7,7,7,7,3,3,3,3,3,3,3,3,3,3,3,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,5,5,5,5,5,5,5,1,1,1,1,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,1,1,1,1,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,4,4,4,4,4,4,4,4,6,6,6,6,6,6,6,1,1,4,4,1,1,1,1,1,5,5,5,2,2,2,5,5,5,5,5,5,5,5,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,8,8,8,8,1,1,1,1,1,1,1,1,8,8,8,8,8,8,8,8,5,5,5,5,5,5,5,5,5,6,2,2,2,2,2,2,3,3,3,3,3,8,8,8,8,8,5,5,5,5,5,5,5,5,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"fill":true,"fillColor":"purple","fillOpacity":0.2},null,null,null,null,["77th St","77th St","77th St","77th St","77th St","77th St","77th St","77th St","68th St-Hunter College","68th St-Hunter College","68th St-Hunter College","68th St-Hunter College","68th St-Hunter College","Lexington Av","Lexington Av","Lexington Av","Lexington Av","Lexington Av","Lexington Av","Lexington Av","Lexington Av","Lexington Av","59th St","59th St","59th St","59th St","59th St","59th St","59th St","Lexington Av-53rd St","Lexington Av-53rd St","Lexington Av-53rd St","Lexington Av-53rd St","Lexington Av-53rd St","Lexington Av-53rd St","Lexington Av-53rd St","51st St","51st St","51st St","51st St","51st St","51st St","51st St","51st St","51st St","5th Av","5th Av","5th Av","5th Av","5th Av","5th Av","5th Av","5th Av-53rd St","5th Av-53rd St","5th Av-53rd St","5th Av-53rd St","5th Av-53rd St","Grand Central-42nd St","72nd St","72nd St","72nd St","Grand Central-42nd St","Grand Central-42nd St","Grand Central-42nd St","Grand Central-42nd St","Grand Central-42nd St","Grand Central-42nd St","Grand Central-42nd St","Grand Central-42nd St","57th St","57th St","57th St","57th St","57th St","57th St","57th St","57th St","Grand Central","Grand Central","Grand Central","Grand Central","Grand Central","Grand Central","Grand Central","57th St","57th St","57th St","57th St","57th St","57th St","57th St","57th St","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","47-50th Sts Rockefeller Center","1st Av","1st Av","1st Av","1st Av","7th Av","7th Av","7th Av","7th Av","59th St","59th St","59th St","59th St","59th St","59th St","59th St","59th St","59th St","59th St","59th St","59th St","59th St-Columbus Circle","59th St-Columbus Circle","59th St-Columbus Circle","59th St-Columbus Circle","59th St-Columbus Circle","5th Av","5th Av","5th Av","72nd St","72nd St","72nd St","72nd St","33rd St","33rd St","33rd St","33rd St","33rd St","33rd St","33rd St","33rd St","33rd St","66th St-Lincoln Center","66th St-Lincoln Center","66th St-Lincoln Center","66th St-Lincoln Center","66th St-Lincoln Center","66th St-Lincoln Center","50th St","50th St","50th St","50th St","50th St","50th St","49th St","49th St","49th St","49th St","49th St","49th St","49th St","28th St","28th St","28th St","28th St","28th St","28th St","28th St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","50th St","50th St","50th St","50th St","50th St","50th St","50th St","50th St","50th St","50th St","3rd Av","3rd Av","3rd Av","3rd Av","Times Square","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","Times Square-42nd St","Times Square-42nd St","Times Square-42nd St","Times Square-42nd St","Essex St","Essex St","Times Square","Times Square","Times Square","Times Square","Times Square","Times Square","Times Square","Times Square","Times Square","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","Delancey St","Delancey St","Delancey St","Delancey St","28th St","28th St","28th St","28th St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","42nd St","2nd Av","2nd Av","2nd Av","2nd Av","14th St-Union Square","14th St-Union Square","14th St-Union Square","14th St-Union Square","14th St-Union Square","14th St-Union Square","East Broadway","East Broadway","East Broadway","East Broadway","Union Square","Union Square","Union Square","Union Square","Union Square","Union Square","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","Astor Place","Astor Place","8th St","8th St","8th St","8th St","8th St","8th St","8th St","8th St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","28th St","28th St","28th St","28th St","28th St","28th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","34th St","Grand St","Grand St","Grand St","Bowery","Bowery","Bleecker St","Bleecker St","Bleecker St","Bleecker St","Bleecker St","Bleecker St","Bleecker St","23rd St","23rd St","23rd St","23rd St","Broadway-Lafayette St","Broadway-Lafayette St","Broadway-Lafayette St","Broadway-Lafayette St","Broadway-Lafayette St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","6th Av","6th Av","Spring St","Spring St","Spring St","Spring St","Prince St","Prince St","Prince St","Prince St","18th St","18th St","18th St","18th St","18th St","18th St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","23rd St","Canal St","Canal St","Canal St","Canal St","Canal St","Canal St","Canal St","Canal St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","West 4th St","West 4th St","West 4th St","West 4th St","West 4th St","West 4th St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","14th St","Canal St (UL)","Canal St (UL)","Canal St (UL)","Canal St (UL)","Canal St (UL)","Canal St (UL)","Canal St (UL)","34 St Hudson Yards","34 St Hudson Yards","8th Av","8th Av","Christopher St","Christopher St","Christopher St","Christopher St","Christopher St","Chambers St","Chambers St","Brooklyn Bridge-City Hall","Spring St","Spring St","Spring St","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Brooklyn Bridge-City Hall","Canal St","Canal St","Canal St","Canal St","Canal St","Houston St","Houston St","Houston St","Houston St","Houston St","Houston St","Houston St","Houston St","Canal St","Canal St","Canal St","Canal St","Fulton St","Fulton St","Fulton St","Fulton St","Franklin St","Franklin St","Franklin St","Franklin St","Franklin St","City Hall","City Hall","City Hall","Fulton St","Fulton St","Fulton St","Fulton St","Fulton St","Fulton St","Broadway-Nassau","Broadway-Nassau","Chambers St","Chambers St","Chambers St","Chambers St","Chambers St","Chambers St","Chambers St","Chambers St","Chambers St","Park Place","Wall St","Wall St","Wall St","Wall St","Wall St","Wall St","Chambers St","Chambers St","Chambers St","Chambers St","Chambers St","Fulton St","Fulton St","Fulton St","Fulton St","Fulton St","World Trade Center","World Trade Center","World Trade Center","World Trade Center","World Trade Center","World Trade Center","World Trade Center","World Trade Center","Cortlandt St","Cortlandt St","Cortlandt St","Cortlandt St","Broad St","Broad St","Broad St","Broad St","Broad St","Broad St","Broad St","Broad St","Broad St","Wall St","Wall St","Wall St","Wall St","Wall St","Wall St","Wall St","Wall St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St","Rector St"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPopups","args":[40.75058,-73.993584,"Penn Station",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]},{"method":"addPopups","args":[40.766036,-73.974467,"Central Park Pond",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]},{"method":"addControl","args":["Citibike & Subway Stations in Manhattan (2015)","topright",null,"info legend"]},{"method":"addControl","args":["Darker Blue = More Bike Starts","topright",null,"info legend"]},{"method":"addControl","args":["Darker Purple = More Subway Lines","topright",null,"info legend"]},{"method":"addControl","args":["Source: Smith SQL Server, NYC Public Data","bottomleft",null,"info legend"]}],"limits":{"lat":[40.70569253999999,40.77966809007312],"lng":[-74.01677685000001,-73.95818491]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><em>This map shows the locations of Citibike (blue) and Subway (purple) stations in the lower half of Manhattan. The Subway Station data is from 2015. A the lightest blue represents Citibike Stations with less than 51,808 started bike trips recorded, the medium blue represents stations with between 51,808 and 72,624 bike trips started, while the darkest blue represents citibike stations with greater than 72,624 started trips recorded. The opacity of the purple circles corresponds to the number of daytime subway routes running through the station, with 1 route being the lightest, and 12 routes being the darkest.</em></p>
+</section>
+<section id="blog-post" class="level1">
+<h1>Blog Post</h1>
+<p>Working with the Citibike Data, I was curious to look at the location of high-traffic Citibike Stations compared to the location of subway stations in Manhattan. Are more popular Citibike stations closer to subway stations?</p>
+<p>First, I queried SQL to obtain a dataset of the top 100 Citibike stations with the most bike starts recorded. I also found a dataset of MTA NYCT Subway Entrances and Exits, which is available to the public on data.ny.gov<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Then, I used leaflet to create a map of Manhattan with two types of icons, blue for Citibike stations, and purple for MTA subway stations. I used a custom function to change the color of the Citibike markers, then I mutated the daytime_route column in the Subway Station data to create a column counting the number of routes at each station. I mapped the number of routes to the opacity of the Subway Station Icons.</p>
+<p>From this visualization, it appears that generally, Citibike stations with more bike_starts are within a few blocks of at least one multiroute subway station. For example, Penn Station (marked) has four Citibike stations and three, high-traffic Subway stations within a few blocks. Since more than 650,000 people pass through Penn Station each day,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> it makes sense that it would be a hub for both Subway and Bike transit. Central Park (marked), near the pond, additionally has one subway station and two highly frequented Citibike Stations. Since Central Park is one of the metropolis’s only green spaces, it is likely a tempting spot for people to travel to via subway and bike when the weather is nice.</p>
+<p>One ethical consideration for the Citibike dataset is privacy. Since bike starts and stops are being recorded, it’s possible to estimate certain people’s routines. However, since the data is anonymized and it is only start/stop locations and not full routes (as in the Taxi Data from SDS 100), it would be more difficult to fully track someone’s movements.</p>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>https://data.ny.gov/Transportation/MTA-NYCT-Subway-Entrances-and-Exits-2015/i9wp-a4ja/about_data<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://untappedcities.com/2016/11/03/10-fun-facts-about-the-current-penn-station-we-learned-at-futurepenn-summit/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
