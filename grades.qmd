@@ -1,0 +1,30 @@
+---
+title: "gradesfinal"
+author: "Schwab"
+format: html
+editor: visual
+---
+
+Each of the following is given 1 point.
+
+Ellie grade: 5/5
+
+1 pt - A question posed about one of the data sets on the server at Smith
+
+1 pt - At least a 5 line query written in SQL.
+
+1 pt - Some use of R beyond ggplot and basic wrangling
+
+-   Think of the joins, pivots, map(), function creation, read_csv(), an api, etc.
+
+1 pt - A quality graph that tells a story to answer your question
+
+-   Include: Title, axes labels, caption, source\[\^readme-1\], etc.
+
+-   Consider the visual hierarchy.
+
+-   A purposeful color choice, do not use default colors.
+
+-   A thoughtful theme, do not use the default.
+
+1 pt - A short write up on your findings, the graphing choices you made, and/or ethics involved in your data. (200-300 words).

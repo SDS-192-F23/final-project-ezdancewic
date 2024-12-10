@@ -1,0 +1,196 @@
+---
+title: "Final Project"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup}
+#reading in libraries
+library(tidyverse)
+library(RMySQL)
+library(leaflet)
+library(dbplyr)
+library(sf)
+library(janitor)
+library(leaflet)
+library(leaflegend)
+library(osmdata)
+library(htmltools)
+
+#connecting to SQL server
+db <- dbConnect(
+  MySQL(),
+  host = "scidb.smith.edu",
+  user = "sds192",
+  password = "DSismfc@S"
+)
+knitr::opts_chunk$set(connection = db, max.print = 20)
+```
+
+```{r}
+class(db)
+```
+
+# SQL Code
+
+```{sql connection= db}
+#browsing databases
+SHOW DATABASES;
+
+```
+
+```{sql connection= db}
+#choosing citibike
+USE citibike;
+
+```
+
+```{sql connection=db}
+#browsing tables 
+SHOW TABLES;
+```
+
+```{sql connection=db}
+#glimpsing variables in station_summmary
+DESCRIBE station_summary;
+```
+
+```{sql connection=db}
+#getting information on the top 100 most frequented citibike stations 
+#who have data for more than 11 months of the year
+SELECT station_id, lat, lon, num_starts, num_stops
+
+FROM station_summary
+
+WHERE num_months > 11 
+
+ORDER BY num_starts DESC 
+
+LIMIT 100; 
+```
+
+```{r}
+#bringing SQL database into R
+citibike_stations <- dbGetQuery(conn = db, 
+
+"SELECT station_id, lat, lon, num_starts, num_stops
+
+FROM station_summary
+
+WHERE num_months > 11 
+
+ORDER BY num_starts DESC 
+
+LIMIT 100;")
+```
+
+# Leaflet Map Creation
+
+```{r}
+#reading in second dataframe containing subway station data 
+subway_stations <- read_csv("MTA_NYCT_Subway_Entrances_and_Exits__2015.csv")
+```
+
+```{r}
+#cleaning the names 
+subway_stations <- clean_names(subway_stations)
+```
+
+```{r}
+#filtering only to manhattan
+subway_stations_manhattan <- subway_stations |> 
+  filter(borough == "M")
+```
+
+```{r}
+#"cropping" to only use the subway stations in the same area as the citibike stations
+subway_stations_reduced <- subway_stations_manhattan |> 
+  filter(station_latitude < 40.78143) |>
+  filter(station_latitude > 40.70569) |>
+  filter(station_longitude < -73.95818)
+```
+
+```{r}
+#replacing spaces in daytime_routes with no space so they are not counted in str_length
+subway_stations_reduced$daytime_routes <- subway_stations_reduced$daytime_routes |> 
+  str_replace_all(pattern = c(' ' = ''))
+```
+
+```{r}
+#creating a new variable counting the number of characters in daytime_routes,
+#and therefore the number of routes at each station
+subway_stations_reduced <- subway_stations_reduced |> 
+  mutate(num_routes = str_length(subway_stations_reduced$daytime_routes))
+```
+
+```{r}
+#summarizing the num_starts in citibike stations to know where to cutoff the icon colors
+summary(citibike_stations$num_starts)
+```
+
+```{r}
+#creating a function to separate the color bins for the bike station icons
+getColor <- function(citibike_stations) {
+  sapply(citibike_stations$num_starts, function(num_starts) {
+  if(num_starts <= 51808) {
+    "lightblue"
+  } else if(num_starts <= 72624) {
+    "blue"
+  } else {
+    "darkblue"
+  } })
+}
+
+#creating a custom icon 
+#my bike.svg didn't work for some reason :( 
+icons <- awesomeIcons(
+  icon = 'bicycle.svg',
+  iconColor = 'black',
+  library = 'ion',
+  markerColor = getColor(citibike_stations)
+)
+```
+
+```{r}
+#creating the leaflet map
+leaflet() |>
+  addTiles() |>
+  addProviderTiles(providers$Stadia.AlidadeSmooth) |> #changing the tile theme 
+  addAwesomeMarkers(lng = ~lon, #adding citibike station markers
+             lat = ~lat,
+             data = citibike_stations, 
+             icon = icons
+  ) |> 
+  addCircleMarkers(lng = ~station_longitude, #adding subway station markers
+                   lat = ~station_latitude,
+                   data = subway_stations_reduced, 
+                   label = ~station_name, 
+                   color = "purple",
+                   opacity = ~num_routes, #changing the opacity to reflect the number of routes at each station
+                   stroke = FALSE) |>
+  addPopups(lat =  40.750580, lng = -73.993584, "Penn Station") |> 
+  addPopups(lat =  40.766036, lng = -73.974467, "Central Park Pond") |> 
+  addControl("Citibike & Subway Stations in Manhattan (2015)", position = c("topright")) |> #annotating map 
+  addControl("Darker Blue = More Bike Starts" , position = c("topright")) |> # I could not figure out
+  addControl("Darker Purple = More Subway Lines", position = c("topright")) |> # how to do this with addLegend
+  addControl("Source: Smith SQL Server, NYC Public Data", position = c("bottomleft"))
+
+```
+
+*This map shows the locations of Citibike (blue) and Subway (purple) stations in the lower half of Manhattan. The Subway Station data is from 2015. A the lightest blue represents Citibike Stations with less than 51,808 started bike trips recorded, the medium blue represents stations with between 51,808 and 72,624 bike trips started, while the darkest blue represents citibike stations with greater than 72,624 started trips recorded. The opacity of the purple circles corresponds to the number of daytime subway routes running through the station, with 1 route being the lightest, and 12 routes being the darkest.*
+
+# Blog Post
+
+Working with the Citibike Data, I was curious to look at the location of high-traffic Citibike Stations compared to the location of subway stations in Manhattan. Are more popular Citibike stations closer to subway stations?
+
+First, I queried SQL to obtain a dataset of the top 100 Citibike stations with the most bike starts recorded. I also found a dataset of MTA NYCT Subway Entrances and Exits, which is available to the public on data.ny.gov[^1]. Then, I used leaflet to create a map of Manhattan with two types of icons, blue for Citibike stations, and purple for MTA subway stations. I used a custom function to change the color of the Citibike markers, then I mutated the daytime_route column in the Subway Station data to create a column counting the number of routes at each station. I mapped the number of routes to the opacity of the Subway Station Icons.
+
+[^1]: https://data.ny.gov/Transportation/MTA-NYCT-Subway-Entrances-and-Exits-2015/i9wp-a4ja/about_data
+
+From this visualization, it appears that generally, Citibike stations with more bike_starts are within a few blocks of at least one multiroute subway station. For example, Penn Station (marked) has four Citibike stations and three, high-traffic Subway stations within a few blocks. Since more than 650,000 people pass through Penn Station each day,[^2] it makes sense that it would be a hub for both Subway and Bike transit. Central Park (marked), near the pond, additionally has one subway station and two highly frequented Citibike Stations. Since Central Park is one of the metropolis's only green spaces, it is likely a tempting spot for people to travel to via subway and bike when the weather is nice.
+
+[^2]: https://untappedcities.com/2016/11/03/10-fun-facts-about-the-current-penn-station-we-learned-at-futurepenn-summit/
+
+One ethical consideration for the Citibike dataset is privacy. Since bike starts and stops are being recorded, it's possible to estimate certain people's routines. However, since the data is anonymized and it is only start/stop locations and not full routes (as in the Taxi Data from SDS 100), it would be more difficult to fully track someone's movements.
